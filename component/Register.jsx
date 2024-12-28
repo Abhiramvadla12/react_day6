@@ -19,6 +19,31 @@ export default class Register extends Component {
             alert("please enter values in all fields and then submit");
             return;
         }
+           // Validation rules with updated regex
+    const usernameRegex = /^[a-zA-Z0-9_ ]{3,15}$/; // 3-15 chars, alphanumeric + underscores
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email format
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    // At least 8 chars, 1 letter, 1 number, 1 special character
+
+    // Username Validation
+    if (!usernameRegex.test(username)) {
+      alert("Invalid Username: Use 3-15 characters (letters, numbers, or underscores).");
+      return;
+    }
+
+    // Email Validation
+    if (!emailRegex.test(email)) {
+      alert("Invalid Email: Enter a valid email address.");
+      return;
+    }
+
+    // Password Validation
+    if (!passwordRegex.test(password)) {
+      alert(
+        "Invalid Password: Must be at least 8 characters, with at least 1 letter, 1 number, and 1 special character (@, $, !, %, *, ?, &)."
+      );
+      return;
+    }
         
       // Reset state after submission
       this.setState({ username: "", password: "", email: "" });
@@ -30,10 +55,23 @@ export default class Register extends Component {
           console.log(local_data);
           local_data.push(obj)
           localStorage.setItem('login_ceredential',JSON.stringify(local_data)) 
-          alert("successfully registered!!!!!");
-          window.location.href="../index.html"
+          // alert("successfully registered!!!!!");
+          // window.location.href="../index.html"
+          function generateOtp() {
+            let otp = '';
+            for (let i = 0; i < 4; i++) {
+                otp += Math.floor(Math.random() * 10); // Generate a single digit and append to the OTP
+            }
+            return otp;
+        }
+        
+        const otp = generateOtp();
+        localStorage.setItem("otp", JSON.stringify(otp)); // Store the generated OTP in localStorage
+        //redirecting to otp page
+        window.location.href = "../otp.html";
+        
       }
-  
+
     }
     handleChange(e){
         //on input change or form  input control
@@ -59,7 +97,7 @@ export default class Register extends Component {
           <label htmlFor="email">Email:</label>
           <input type="text" name="email" id="email" placeholder="Enter your email"   value={email} onChange={(e)=>this.handleChange(e)}/>
           <br />
-          <input type="submit" value="Register" />
+          <input type="submit" value="Register" id='submit'/>
         </form>
         
       </>

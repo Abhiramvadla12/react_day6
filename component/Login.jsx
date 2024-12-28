@@ -1,5 +1,5 @@
 import { Component } from 'react';
-
+import './style_login.css'
 class Login extends Component {
   constructor(props){
     super(props)
@@ -20,7 +20,32 @@ class Login extends Component {
           alert("please enter values in all fields and then submit");
           return;
       }
-      
+         // Validation rules with updated regex
+    const usernameRegex = /^[a-zA-Z0-9_ ]{3,15}$/; // 3-15 chars, alphanumeric + underscores
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email format
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    // At least 8 chars, 1 letter, 1 number, 1 special character
+
+    // Username Validation
+    if (!usernameRegex.test(username)) {
+      alert("Invalid Username: Use 3-15 characters (letters, numbers, or underscores).");
+      return;
+    }
+
+    // Email Validation
+    if (!emailRegex.test(email)) {
+      alert("Invalid Email: Enter a valid email address.");
+      return;
+    }
+
+    // Password Validation
+    if (!passwordRegex.test(password)) {
+      alert(
+        "Invalid Password: Must be at least 8 characters, with at least 1 letter, 1 number, and 1 special character (@, $, !, %, *, ?, &)."
+      );
+      return;
+    }
+
     // Reset state after submission
     this.setState({ username: "", password: "", email: "" });
     const obj = { username, password, email };
@@ -79,10 +104,10 @@ class Login extends Component {
           <label htmlFor="password">Password:</label>
           <input type="text" name="password" id="password" placeholder="Enter your password" value={password} onChange={(e)=>this.handleChange(e)}  />
           <br />
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">Email  :  </label>
           <input type="text" name="email" id="email" placeholder="Enter your email"   value={email} onChange={(e)=>this.handleChange(e)}/>
           <br />
-          <input type="submit" value="Login" />
+          <input type="submit" value="Login" id='submit' />
         </form>
       </>
     );

@@ -1,9 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import Register from '../component/Register.jsx'
-import '../component/register.css'
+import Otp from '../component/otp'
+
+import '../component/otp.css'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Register />
+        <Otp />
   </StrictMode>,
 )

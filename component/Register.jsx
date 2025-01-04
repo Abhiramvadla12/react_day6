@@ -68,7 +68,7 @@ export default class Register extends Component {
         const otp = generateOtp();
         localStorage.setItem("otp", JSON.stringify(otp)); // Store the generated OTP in localStorage
         //redirecting to otp page
-        window.location.href = "../otp.html";
+        window.location.href = "react_day6/otp.html";
         
       }
 

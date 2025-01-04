@@ -73,7 +73,7 @@ class Login extends Component {
           // local_data.push(obj)
           // localStorage.setItem('login_ceredential',JSON.stringify(local_data))
           if(confirm("user not found ,do you want register or enter correct ceredentials , if you want to register click yes")){
-              window.location.href = "../Register.html";
+              window.location.href = "react_day6/Register.html";
           }
           
         }

@@ -18,7 +18,7 @@ const Otp = () => {
         if(user_value==otp){
             alert("successfully registerd !!!!");
             setTimeout(()=>{
-                window.location.href = "../index.html";
+                window.location.href = "/react_day6/index.html";
             },3000)
         }
         else{

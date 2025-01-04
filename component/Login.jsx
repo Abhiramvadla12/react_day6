@@ -9,6 +9,7 @@ class Login extends Component {
       password:"",
       email:"",
     }
+    
   }
   handleSubmit(e){
       //this function involes when form is submitted
@@ -84,6 +85,7 @@ class Login extends Component {
     //on input change or form  input control
     // console.log(e.target.value)
      // Handles input changes
+     console.log(this.state)
      const { name, value } = e.target;
      this.setState({ [name]: value });
     console.log(value)
@@ -99,7 +101,7 @@ class Login extends Component {
         {/* //creating a form */}
         <form onSubmit={(e)=> this.handleSubmit(e)}>
           <label htmlFor="username">Username:</label>
-          <input type="text" name="username" id="username" placeholder="Enter your username" value={username} onChange={(e)=>this.handleChange(e)}  />
+          <input type="text" name="username" id="username" placeholder="Enter your username" value={username} onChange={(e)=>this.handleChange(e)} />
           <br />
           <label htmlFor="password">Password:</label>
           <input type="text" name="password" id="password" placeholder="Enter your password" value={password} onChange={(e)=>this.handleChange(e)}  />
